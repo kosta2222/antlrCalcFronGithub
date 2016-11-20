@@ -5,7 +5,8 @@ PI     : 'pi';
 E      : 'e';
 POW    : '^';
 NL     : '\n';
-WS     : [ \t\r]+ -> skip;
+// WS     : [ \t\r]+ -> skip;
+WS: (' '|'\t'|'\r'|'\n') + -> skip;
 ID     : [a-zA-Z_][a-zA-Z_0-9]*;
 
 PLUS  : '+';
@@ -16,9 +17,12 @@ DIV   : '/';
 LPAR  : '(';
 RPAR  : ')';
 
+
+
+
 input
-    : setVar NL input     # ToSetVar
-    | plusOrMinus NL? EOF # Calculate
+    : setVar      # ToSetVar
+    | plusOrMinus   # Calculate
     ;
 
 setVar
